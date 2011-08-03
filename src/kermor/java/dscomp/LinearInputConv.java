@@ -3,8 +3,6 @@
  */
 package kermor.java.dscomp;
 
-import kermor.java.Parameter;
-
 import org.apache.commons.math.linear.RealMatrix;
 
 /**
@@ -23,7 +21,7 @@ public class LinearInputConv implements IInputConv {
 	 * @see kermor.java.IInputConv#evaluate(double, kermor.java.Parameter)
 	 */
 	@Override
-	public RealMatrix evaluate(double t, Parameter mu) {
+	public RealMatrix evaluate(double t, double[] mu) {
 		return B;
 	}
 

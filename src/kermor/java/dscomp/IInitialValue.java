@@ -3,7 +3,6 @@
  */
 package kermor.java.dscomp;
 
-import kermor.java.Parameter;
 
 /**
  * @author Ernst
@@ -11,6 +10,6 @@ import kermor.java.Parameter;
  */
 public interface IInitialValue {
 	
-	public double[] evaluate(Parameter mu);
+	public double[] evaluate(double[] mu);
 
 }

@@ -10,7 +10,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author Ernst
+ * 
+ * Manages models loaded from the file system available via the java.io classes.
+ * 
+ * Takes an initial model root directory upon construction.
+ * 
+ * @author Daniel Wirtz
  *
  */
 public class FileModelManager extends AModelManager {
@@ -32,7 +37,7 @@ public class FileModelManager extends AModelManager {
 	}
 
 	@Override
-	public String[] getModelList() throws IOException {
+	public String[] getFolderList() throws IOException {
 		return new File(root + File.separator + getModelDir()).list();
 	}
 
@@ -42,7 +47,7 @@ public class FileModelManager extends AModelManager {
 	}
 
 	@Override
-	public boolean fileExists(String filename) {
+	public boolean modelFileExists(String filename) {
 		return new File(root + File.separator + getModelDir() + File.separator + filename).exists();
 	}
 

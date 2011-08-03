@@ -3,9 +3,8 @@
  */
 package kermor.java.kernel;
 
-import kermor.java.Parameter;
-
 import org.apache.commons.math.linear.RealMatrix;
+import org.apache.commons.math.linear.RealVector;
 
 /**
  * @author Ernst
@@ -15,18 +14,18 @@ public class KernelExpansion {
 	
 	public RealMatrix ma;
 	
-	public GaussKernel StateKernel;
-	public GaussKernel TimeKernel;
-	public GaussKernel ParamKernel;
+	public IKernel StateKernel;
+	public IKernel TimeKernel;
+	public IKernel ParamKernel;
 	
 	public RealMatrix xi, mui;
-	public double[] ti;
+	public RealVector ti;
 	
-	public double[] evaluate(double t, double[] x, Parameter mu) {
+	public double[] evaluate(double t, double[] x, double[] mu) {
 		if (TimeKernel != null) {
 			return ma.operate(dotTimes(
-					dotTimes(StateKernel.evaluate(x, xi), TimeKernel.evaluate(t, ti)),
-					ParamKernel.evaluate(mu.getValue(), mui)));
+					dotTimes(StateKernel.evaluate(x, xi), TimeKernel.evaluate(t, ti.getData())),
+					ParamKernel.evaluate(mu, mui)));
 		} else {
 			return ma.operate(StateKernel.evaluate(x, xi));
 		}

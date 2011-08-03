@@ -3,8 +3,6 @@
  */
 package kermor.java.dscomp;
 
-import kermor.java.Parameter;
-
 import org.apache.commons.math.linear.RealMatrix;
 
 /**
@@ -23,7 +21,7 @@ public class LinearOutputConv implements IOutputConv {
 	 * @see kermor.java.IOutputConv#evaluate(double, double[], double[])
 	 */
 	@Override
-	public double[] evaluate(double t, double[] x, Parameter mu) {
+	public double[] evaluate(double t, double[] x, double[] mu) {
 		return C.operate(x);
 	}
 

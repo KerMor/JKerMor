@@ -3,7 +3,11 @@
  */
 package kermor.java;
 
+import java.io.IOException;
+
 import kermor.java.io.AModelManager;
+import kermor.java.io.MathObjectReader;
+import kermor.java.io.MathObjectReader.MathReaderException;
 
 import org.apache.commons.math.linear.Array2DRowRealMatrix;
 import org.apache.commons.math.linear.RealMatrix;
@@ -25,23 +29,25 @@ public class ReducedModel implements FixedStepHandler {
 	
 	public String name;
 	
+	public Parameters params;
+	
 	private double[] times;
 	
 	private int cnt;
 	private RealMatrix output;
-	private Parameter mu;
+	private double[] mu;
 	private double dt = .1;
 	private double T = 1;
 	
-//	public ReducedModel() {
-//		
-//	}
-	
-	public RealMatrix simulate(Parameter mu) throws KerMorException {
+	public RealMatrix simulate(double[] mu) throws KerMorException {
+		if (mu == null && params != null) {
+			throw new KerMorException("Simulation without a parameter when parameters are configured are not allowed.");
+		}
 		cnt = 0;
 		double[] out = new double[system.getDimension()];
 		output = new Array2DRowRealMatrix(system.C.getOutputDimension(), times.length);
 		this.mu = mu;
+		this.system.setConfig(mu, 1);
 		
 		try {
 			integrator.integrate(system, 0, system.x0.evaluate(mu), T, out);
@@ -80,27 +86,41 @@ public class ReducedModel implements FixedStepHandler {
 		return times;
 	}
 	
-	public static ReducedModel load(AModelManager mng) {
+	public static ReducedModel load(AModelManager mng) throws MathReaderException, IOException {
 		ReducedModel res = new ReducedModel();
 		
-		res.setdt(.02);
-		res.setT(1);
-		res.name = "Testmodel!";
-		
-		// Load the system
-		res.system = ReducedSystem.load(mng);
-		
-		// The ODE integrator
-		res.integrator = new EulerIntegrator(res.dt);
-		res.integrator.addStepHandler(new StepNormalizer(res.dt, res));
+		String type = mng.getModelXMLAttribute("type");
+		if ("kermor".equals(type)) {
+			MathObjectReader r = new MathObjectReader();
+			
+			String hlp = mng.getModelXMLTagValue("dt");
+			res.setdt(Double.parseDouble(hlp));
+			hlp = mng.getModelXMLTagValue("T");
+			res.setT(Double.parseDouble(hlp));
+			res.name = mng.getModelXMLAttribute("title");
+			
+			// Load the parameters
+			hlp = mng.getModelXMLTagValue("parameters");
+			double[][] pvals = r.readMatrixData(mng.getInStream("paramvalues.bin"));
+			if (hlp != null) {
+				res.params = new Parameters();
+				int p = 1;
+				while (mng.xmlTagExists("param"+p)) {
+					res.params.addParam(mng.getModelXMLAttribute("name", "param"+p), pvals[p-1][0], pvals[p-1][1]);
+					p++;
+				}
+			}
+			
+			// Load the system
+			res.system = ReducedSystem.load(mng);
+			
+			// The ODE integrator
+			res.integrator = new EulerIntegrator(res.dt);
+			res.integrator.addStepHandler(new StepNormalizer(res.dt, res));
+		} else {
+			throw new RuntimeException("Model type '"+type+"' not applicable for JKerMor ReducedModels.");
+		}
 		
 		return res;
 	}
-	
-	public static void main(String[] args) throws KerMorException {
-		ReducedModel r = ReducedModel.load(null);
-		RealMatrix res = r.simulate(null);
-		System.out.print(res);
-	}
-
 }

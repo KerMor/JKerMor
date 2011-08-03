@@ -11,7 +11,7 @@ import org.apache.commons.math.util.FastMath;
  * @author Ernst
  * 
  */
-public class GaussKernel {
+public class GaussKernel implements IKernel {
 
 	public double gamma;
 	
@@ -19,6 +19,10 @@ public class GaussKernel {
 		this.gamma = gamma;
 	}
 
+	/* (non-Javadoc)
+	 * @see kermor.java.kernel.IKernel#evaluate(org.apache.commons.math.linear.RealMatrix, org.apache.commons.math.linear.RealMatrix)
+	 */
+	@Override
 	public RealMatrix evaluate(RealMatrix x, RealMatrix y) {
 		RealMatrix res = new Array2DRowRealMatrix(x.getColumnDimension(),
 				y.getColumnDimension());
@@ -28,6 +32,10 @@ public class GaussKernel {
 		return res;
 	}
 
+	/* (non-Javadoc)
+	 * @see kermor.java.kernel.IKernel#evaluate(double[], org.apache.commons.math.linear.RealMatrix)
+	 */
+	@Override
 	public double[] evaluate(double[] x, RealMatrix y) {
 		double[] res = new double[y.getColumnDimension()];
 		for (int i = 0; i < y.getColumnDimension(); i++) {
@@ -37,6 +45,10 @@ public class GaussKernel {
 		return res;
 	}
 
+	/* (non-Javadoc)
+	 * @see kermor.java.kernel.IKernel#evaluate(double, double[])
+	 */
+	@Override
 	public double[] evaluate(double t, double[] ti) {
 		double[] res = new double[ti.length];
 		for (int i = 0; i < ti.length; i++) {

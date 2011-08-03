@@ -3,7 +3,6 @@
  */
 package kermor.java.dscomp;
 
-import kermor.java.Parameter;
 
 /**
  * @author Ernst
@@ -20,7 +19,7 @@ public class ConstInitialValue implements IInitialValue {
 	 * @see kermor.java.IInitialValue#evaluate(kermor.java.Parameter)
 	 */
 	@Override
-	public double[] evaluate(Parameter mu) {
+	public double[] evaluate(double[] mu) {
 		return x0;
 	}
 

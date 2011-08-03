@@ -17,5 +17,9 @@ public class KerMorException extends Exception {
 	public KerMorException(String msg, Exception inner) {
 		super(msg, inner);
 	}
+	
+	public KerMorException(String msg) {
+		super(msg);
+	}
 
 }

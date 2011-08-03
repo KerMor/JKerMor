@@ -12,7 +12,7 @@ import org.junit.Test;
  * @author Ernst
  *
  */
-public class TestUtils {
+public class UtilsTest {
 
 	/**
 	 * Test method for {@link kermor.java.Util#linspace(double, double, int)}.

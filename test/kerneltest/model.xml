@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model type="kermor" title="Reduced: Kernel test model" image="">
+	<T>5.00000000000000000</T>
+	<dt>0.08000000000000000</dt>
+	<dim>1</dim>
+	<parameters>
+		<param1 name="mu1"/>
+		<param2 name="mu2"/>
+	</parameters>
+	<corefun>
+		<corefuntype>dscomponents.ParamTimeKernelCoreFun</corefuntype>
+		<statekernel>kernels.GaussKernel</statekernel>
+		<timekernel>kernels.GaussKernel</timekernel>
+		<paramkernel>kernels.GaussKernel</paramkernel>
+	</corefun>
+	<outputconvtype>dscomponents.LinearOutputConv</outputconvtype>
+	<initialvaluetype>dscomponents.ConstInitialValue</initialvaluetype>
+</model>

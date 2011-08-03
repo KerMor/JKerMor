@@ -3,8 +3,6 @@
  */
 package kermor.java.dscomp;
 
-import kermor.java.Parameter;
-
 import org.apache.commons.math.linear.RealMatrix;
 
 /**
@@ -13,6 +11,6 @@ import org.apache.commons.math.linear.RealMatrix;
  */
 public interface IInputConv {
 
-	public RealMatrix evaluate(double t, Parameter mu);
+	public RealMatrix evaluate(double t, double[] mu);
 	
 }
