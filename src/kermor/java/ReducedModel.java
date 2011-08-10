@@ -5,7 +5,6 @@ package kermor.java;
 
 import java.io.IOException;
 
-
 import org.apache.commons.math.linear.Array2DRowRealMatrix;
 import org.apache.commons.math.linear.RealMatrix;
 import org.apache.commons.math.ode.DerivativeException;
