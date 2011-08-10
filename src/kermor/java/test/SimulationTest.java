@@ -3,10 +3,11 @@ package kermor.java.test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import kermor.java.ReducedModel;
-import kermor.java.io.FileModelManager;
 
 import org.apache.commons.math.linear.RealMatrix;
 import org.junit.Test;
+
+import rmcommon.io.FileModelManager;
 
 public class SimulationTest {
 

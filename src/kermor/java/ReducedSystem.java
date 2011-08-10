@@ -12,9 +12,6 @@ import kermor.java.dscomp.IInputFunctions;
 import kermor.java.dscomp.IOutputConv;
 import kermor.java.dscomp.LinearInputConv;
 import kermor.java.dscomp.LinearOutputConv;
-import kermor.java.io.AModelManager;
-import kermor.java.io.MathObjectReader;
-import kermor.java.io.MathObjectReader.MathReaderException;
 import kermor.java.kernel.GaussKernel;
 import kermor.java.kernel.IKernel;
 import kermor.java.kernel.KernelExpansion;
@@ -22,6 +19,11 @@ import kermor.java.kernel.LinearKernel;
 
 import org.apache.commons.math.ode.DerivativeException;
 import org.apache.commons.math.ode.FirstOrderDifferentialEquations;
+
+import rmcommon.Util;
+import rmcommon.io.AModelManager;
+import rmcommon.io.MathObjectReader;
+import rmcommon.io.MathObjectReader.MathReaderException;
 
 /**
  * @author Ernst
