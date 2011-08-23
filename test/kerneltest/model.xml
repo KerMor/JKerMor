@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<model type="kermor" title="Reduced: Kernel test model" image="">
-	<T>5.00000000000000000</T>
-	<dt>0.08000000000000000</dt>
+<model type="kermor" machformat="be">
+	<description>
+		<short>Reduced: Kernel test model</short>
+		<image></image>
+	</description>
+	<data><kermor>
+		<T>5.00000000000000000</T>
+		<dt>0.08000000000000000</dt>
 	<dim>1</dim>
 	<parameters>
-		<param1 name="mu1"/>
-		<param2 name="mu2"/>
+		<param name="mu1" min="0.00000000000000000" max="1.00000000000000000" label="mu1"/>
+		<param name="mu2" min="0.00000000000000000" max="0.50000000000000000" label="mu2"/>
 	</parameters>
 	<corefun>
 		<corefuntype>dscomponents.ParamTimeKernelCoreFun</corefuntype>
@@ -13,6 +18,8 @@
 		<timekernel>kernels.GaussKernel</timekernel>
 		<paramkernel>kernels.GaussKernel</paramkernel>
 	</corefun>
+	<inputconvtype>dscomponents.AffLinInputConv</inputconvtype>
 	<outputconvtype>dscomponents.LinearOutputConv</outputconvtype>
-	<initialvaluetype>dscomponents.ConstInitialValue</initialvaluetype>
+	<initialvaluetype>dscomponents.AffineInitialValue</initialvaluetype>
+	</kermor></data>
 </model>
