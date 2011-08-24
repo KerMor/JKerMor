@@ -2,12 +2,12 @@ package kermor.java.test;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import rmcommon.io.FileModelManager;
 import kermor.java.ReducedModel;
 
 import org.apache.commons.math.linear.RealMatrix;
 import org.junit.Test;
 
-import rmcommon.io.FileModelManager;
 
 public class SimulationTest {
 

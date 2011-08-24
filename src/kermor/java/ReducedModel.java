@@ -5,6 +5,11 @@ package kermor.java;
 
 import java.io.IOException;
 
+import rmcommon.Util;
+import rmcommon.io.AModelManager;
+import rmcommon.io.MathObjectReader;
+import rmcommon.io.MathObjectReader.MathReaderException;
+
 import org.apache.commons.math.linear.Array2DRowRealMatrix;
 import org.apache.commons.math.linear.RealMatrix;
 import org.apache.commons.math.ode.DerivativeException;
@@ -13,10 +18,6 @@ import org.apache.commons.math.ode.nonstiff.EulerIntegrator;
 import org.apache.commons.math.ode.sampling.FixedStepHandler;
 import org.apache.commons.math.ode.sampling.StepNormalizer;
 
-import rmcommon.Util;
-import rmcommon.io.AModelManager;
-import rmcommon.io.MathObjectReader;
-import rmcommon.io.MathObjectReader.MathReaderException;
 
 /**
  * @author Ernst

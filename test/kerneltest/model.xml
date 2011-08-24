@@ -2,7 +2,7 @@
 <model type="kermor" machformat="be">
 	<description>
 		<short>Reduced: Kernel test model</short>
-		<image></image>
+		<image>modelimage.png</image>
 	</description>
 	<data><kermor>
 		<T>5.00000000000000000</T>
