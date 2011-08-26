@@ -85,7 +85,7 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 		
 		hlp = mng.getModelXMLTagValue("initialvaluetype");
 		if ("dscomponents.ConstInitialValue".equals(hlp)) {
-			res.x0 = new ConstInitialValue(r.readVectorData(mng.getInStream("x0.bin")));
+			res.x0 = new ConstInitialValue(r.readRawDoubleVector(mng.getInStream("x0.bin")));
 		}
 		
 		//res.u = new ConstInputFunction(new double[]{.5});
@@ -119,7 +119,7 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 		MathObjectReader r = new MathObjectReader();
 		String type = mng.getModelXMLTagValue(typestr);
 		if ("kernels.GaussKernel".equals(type)) {
-			double[] g = r.readVectorData(mng.getInStream(datafile));
+			double[] g = r.readRawDoubleVector(mng.getInStream(datafile));
 			res = new GaussKernel(g[0]);
 		} else if ("kernels.LinearKernel".equals(type)) {
 			res = new LinearKernel();

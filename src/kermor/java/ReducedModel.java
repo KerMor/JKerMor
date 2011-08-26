@@ -103,7 +103,7 @@ public class ReducedModel implements FixedStepHandler {
 			
 			// Load the parameters
 			hlp = mng.getModelXMLTagValue("parameters");
-			double[][] pvals = r.readMatrixData(mng.getInStream("paramvalues.bin"));
+			double[][] pvals = r.readRawDoubleMatrix(mng.getInStream("paramvalues.bin"));
 			if (hlp != null) {
 				res.params = new Parameters();
 				int p = 1;
