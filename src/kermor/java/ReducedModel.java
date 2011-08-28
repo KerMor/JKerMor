@@ -5,6 +5,7 @@ package kermor.java;
 
 import java.io.IOException;
 
+import rmcommon.Parameters;
 import rmcommon.Util;
 import rmcommon.io.AModelManager;
 import rmcommon.io.MathObjectReader;
