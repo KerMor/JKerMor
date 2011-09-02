@@ -3,12 +3,13 @@
  */
 package kermor.java.test;
 
-import rmcommon.Util;
 import kermor.java.kernel.GaussKernel;
 import kermor.java.kernel.IKernel;
 import kermor.java.visual.Plotter;
 
 import org.junit.Test;
+
+import rmcommon.Util;
 
 
 
