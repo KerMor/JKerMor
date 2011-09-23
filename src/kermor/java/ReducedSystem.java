@@ -11,10 +11,12 @@ import rmcommon.io.MathObjectReader;
 import rmcommon.io.MathObjectReader.MathReaderException;
 
 import kermor.java.dscomp.ConstInitialValue;
+import kermor.java.dscomp.ICoreFun;
 import kermor.java.dscomp.IInitialValue;
 import kermor.java.dscomp.IInputConv;
 import kermor.java.dscomp.IInputFunctions;
 import kermor.java.dscomp.IOutputConv;
+import kermor.java.dscomp.LinearCoreFun;
 import kermor.java.dscomp.LinearInputConv;
 import kermor.java.dscomp.LinearOutputConv;
 import kermor.java.kernel.GaussKernel;
@@ -42,7 +44,7 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 
 	public IInputFunctions u = null;
 
-	public KernelExpansion f = null;
+	public ICoreFun f = null;
 
 	private double[] mu = null;
 	private int inidx = -1;
@@ -91,26 +93,27 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 		//res.u = new ConstInputFunction(new double[]{.5});
 		hlp = mng.getModelXMLTagValue("corefuntype");
 		if ("dscomponents.ParamTimeKernelCoreFun".equals(hlp)) {
-			res.f = new KernelExpansion();
-			res.f.ma = r.readMatrix(mng.getInStream("Ma.bin"));
+			KernelExpansion k = new KernelExpansion();
+			k.ma = r.readMatrix(mng.getInStream("Ma.bin"));
 			
-			res.f.StateKernel = loadKernel(mng, "statekernel", "kernel.bin");
-			res.f.xi = r.readMatrix(mng.getInStream("xi.bin"));
+			k.StateKernel = loadKernel(mng, "statekernel", "kernel.bin");
+			k.xi = r.readMatrix(mng.getInStream("xi.bin"));
 			//System.out.println(Util.realMatToString(res.f.xi));
 			
-			res.f.TimeKernel = loadKernel(mng, "timekernel", "timekernel.bin");
-			res.f.ti = r.readVector(mng.getInStream("ti.bin"));
+			k.TimeKernel = loadKernel(mng, "timekernel", "timekernel.bin");
+			k.ti = r.readVector(mng.getInStream("ti.bin"));
 			//System.out.println(Util.realVecToString(res.f.ti));
 			
-			res.f.ParamKernel = loadKernel(mng, "paramkernel", "paramkernel.bin");
-			res.f.mui = r.readMatrix(mng.getInStream("mui.bin"));
+			k.ParamKernel = loadKernel(mng, "paramkernel", "paramkernel.bin");
+			k.mui = r.readMatrix(mng.getInStream("mui.bin"));
 			//System.out.println(Util.realMatToString(res.f.mui));
 			
+			 res.f = k;
+		} else if("dscomponents.LinearCoreFun".equals(hlp)) {
+			res.f = new LinearCoreFun(r.readMatrix(mng.getInStream("A.bin")));
 		} else {
 			throw new RuntimeException("Unknown core function type: "+hlp);
 		}
-		
-
 		return res;
 	}
 	

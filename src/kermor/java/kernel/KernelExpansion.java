@@ -3,14 +3,16 @@
  */
 package kermor.java.kernel;
 
+import kermor.java.dscomp.ICoreFun;
+
 import org.apache.commons.math.linear.RealMatrix;
 import org.apache.commons.math.linear.RealVector;
 
 /**
- * @author Ernst
+ * @author D. Wirtz
  *
  */
-public class KernelExpansion {
+public class KernelExpansion implements ICoreFun {
 	
 	public RealMatrix ma;
 	
@@ -21,6 +23,10 @@ public class KernelExpansion {
 	public RealMatrix xi, mui;
 	public RealVector ti;
 	
+	/**
+	 * @see kermor.java.kernel.ICoreFun#evaluate(double, double[], double[])
+	 */
+	@Override
 	public double[] evaluate(double t, double[] x, double[] mu) {
 		if (TimeKernel != null) {
 			return ma.operate(dotTimes(

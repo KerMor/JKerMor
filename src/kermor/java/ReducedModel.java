@@ -102,17 +102,7 @@ public class ReducedModel implements FixedStepHandler {
 			res.setT(Double.parseDouble(hlp));
 			res.name = mng.getModelXMLAttribute("title");
 			
-			// Load the parameters
-			hlp = mng.getModelXMLTagValue("parameters");
-			double[][] pvals = r.readRawDoubleMatrix(mng.getInStream("paramvalues.bin"));
-			if (hlp != null) {
-				res.params = new Parameters();
-				int p = 1;
-				while (mng.xmlTagExists("param"+p)) {
-					res.params.addParam(mng.getModelXMLAttribute("name", "param"+p), pvals[p-1][0], pvals[p-1][1]);
-					p++;
-				}
-			}
+			res.params = mng.getParameters();
 			
 			// Load the system
 			res.system = ReducedSystem.load(mng);
