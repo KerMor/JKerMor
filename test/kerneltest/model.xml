@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <model type="kermor" machformat="be">
 	<description>
-		<short>Reduced: Base Model</short>
+		<short>Reduced: DynLin Timoschenko Beam</short>
 		<image>modelimage.png</image>
 	</description>
 	<kermor_model>
@@ -17,4 +17,7 @@
 	<outputconvtype>dscomponents.LinearOutputConv</outputconvtype>
 	<initialvaluetype>dscomponents.ConstInitialValue</initialvaluetype>
 	</kermor_model>
+<affinefunctions>
+	<package>models.beam.dynlintimo</package>
+</affinefunctions>
 </model>

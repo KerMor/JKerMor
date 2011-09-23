@@ -74,10 +74,23 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 		res.dim = Integer.parseInt(mng.getModelXMLTagValue("dim"));
 		
 		MathObjectReader r = new MathObjectReader();
+		String hlp;
 		
-		String hlp = mng.getModelXMLTagValue("inputconvtype");
-		if ("dscomponents.LinearInputConv".equals(hlp)) {
-			res.B = new LinearInputConv(r.readMatrix(mng.getInStream("B.bin")));
+		// Inputs
+		if (mng.xmlTagExists("kermor_model.inputconvtype")) {
+			ClassLoader cl = mng.getClassLoader();
+			String thepackage = mng.getModelXMLTagValue("affinefunctions.package");
+			thepackage = thepackage != null ? thepackage+".":"";
+			try {
+				Class<?> af = cl.loadClass(thepackage+"Inputs");
+				res.u = (IInputFunctions)af.newInstance();
+			} catch (Exception e) {
+				throw new IOException("Error loading the input functions.",e);
+			}
+			hlp = mng.getModelXMLTagValue("inputconvtype");
+			if ("dscomponents.LinearInputConv".equals(hlp)) {
+				res.B = new LinearInputConv(r.readMatrix(mng.getInStream("B.bin")));
+			}
 		}
 		
 		hlp = mng.getModelXMLTagValue("outputconvtype");

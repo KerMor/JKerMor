@@ -3,6 +3,7 @@ package kermor.java.test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import kermor.java.ReducedModel;
+import kermor.java.visual.Plotter;
 
 import org.apache.commons.math.linear.RealMatrix;
 import org.junit.Test;
@@ -24,10 +25,10 @@ public class SimulationTest {
 			//mu[0] = 0; mu[1] = 0;
 			RealMatrix res = r.simulate(mu);
 			
-//			Plotter p = new Plotter(r.name);
-//			p.plotResult(r.getTimes(), res, r);
-//			
-//			while(p.isVisible()) {}
+			Plotter p = new Plotter(r.name);
+			p.plotResult(r.getTimes(), res, r);
+			
+			while(p.isVisible()) {}
 			
 //			System.out.print(Util.realMatToString(res));
 			
