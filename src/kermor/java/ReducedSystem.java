@@ -5,11 +5,6 @@ package kermor.java;
 
 import java.io.IOException;
 
-import rmcommon.Util;
-import rmcommon.io.AModelManager;
-import rmcommon.io.MathObjectReader;
-import rmcommon.io.MathObjectReader.MathReaderException;
-
 import kermor.java.dscomp.ConstInitialValue;
 import kermor.java.dscomp.ICoreFun;
 import kermor.java.dscomp.IInitialValue;
@@ -26,6 +21,11 @@ import kermor.java.kernel.LinearKernel;
 
 import org.apache.commons.math.ode.DerivativeException;
 import org.apache.commons.math.ode.FirstOrderDifferentialEquations;
+
+import rmcommon.Util;
+import rmcommon.io.AModelManager;
+import rmcommon.io.MathObjectReader;
+import rmcommon.io.MathObjectReader.MathReaderException;
 
 
 /**
