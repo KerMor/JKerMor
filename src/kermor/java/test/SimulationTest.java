@@ -23,7 +23,7 @@ public class SimulationTest {
 			r.setT(7);
 			double[] mu = r.params.getRandomParam();
 			//mu[0] = 0; mu[1] = 0;
-			RealMatrix res = r.simulate(mu);
+			RealMatrix res = null; r.simulate(mu);
 			
 			Plotter p = new Plotter(r.name);
 			p.plotResult(r.getTimes(), res, r);

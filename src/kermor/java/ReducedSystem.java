@@ -73,7 +73,7 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 
 		res.dim = Integer.parseInt(mng.getModelXMLTagValue("dim"));
 		
-		MathObjectReader r = new MathObjectReader();
+		MathObjectReader r = mng.getMathObjReader();
 		String hlp;
 		
 		// Inputs

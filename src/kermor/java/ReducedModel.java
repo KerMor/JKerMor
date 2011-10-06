@@ -13,15 +13,17 @@ import org.apache.commons.math.ode.nonstiff.EulerIntegrator;
 import org.apache.commons.math.ode.sampling.FixedStepHandler;
 import org.apache.commons.math.ode.sampling.StepNormalizer;
 
+import rmcommon.ModelType;
 import rmcommon.Parameters;
 import rmcommon.Util;
+import rmcommon.geometry.GeometryData;
 import rmcommon.io.AModelManager;
 import rmcommon.io.MathObjectReader;
 import rmcommon.io.MathObjectReader.MathReaderException;
 
 
 /**
- * @author Ernst
+ * @author Daniel Wirtz
  *
  */
 public class ReducedModel implements FixedStepHandler {
@@ -34,6 +36,8 @@ public class ReducedModel implements FixedStepHandler {
 	
 	public Parameters params;
 	
+	public GeometryData geo;
+	
 	private double[] times;
 	
 	private int cnt;
@@ -42,7 +46,7 @@ public class ReducedModel implements FixedStepHandler {
 	private double dt = .1;
 	private double T = 1;
 	
-	public RealMatrix simulate(double[] mu) throws KerMorException {
+	public void simulate(double[] mu) throws KerMorException {
 		if (mu == null && params != null) {
 			throw new KerMorException("Simulation without a parameter when parameters are configured are not allowed.");
 		}
@@ -57,7 +61,9 @@ public class ReducedModel implements FixedStepHandler {
 		} catch (Exception e) {
 			throw new KerMorException("Simulation failed due to an exception.", e);
 		}
-		
+	}
+	
+	public RealMatrix getOutput() {
 		return output;
 	}
 	
@@ -91,10 +97,8 @@ public class ReducedModel implements FixedStepHandler {
 	
 	public static ReducedModel load(AModelManager mng) throws MathReaderException, IOException {
 		ReducedModel res = new ReducedModel();
-		
-		String type = mng.getModelXMLAttribute("type");
-		if ("kermor".equals(type)) {
-			MathObjectReader r = new MathObjectReader();
+	
+		if (mng.getModelType() == ModelType.JKerMor) {
 			
 			String hlp = mng.getModelXMLTagValue("dt");
 			res.setdt(Double.parseDouble(hlp));
@@ -110,8 +114,13 @@ public class ReducedModel implements FixedStepHandler {
 			// The ODE integrator
 			res.integrator = new EulerIntegrator(res.dt);
 			res.integrator.addStepHandler(new StepNormalizer(res.dt, res));
+			
+			if (mng.xmlTagExists("model.geometry")) {
+				res.geo = new GeometryData();
+				res.geo.loadModelGeometry(mng);
+			}
 		} else {
-			throw new RuntimeException("Model type '"+type+"' not applicable for JKerMor ReducedModels.");
+			throw new RuntimeException("Model type '"+ mng.getModelType() +"' not applicable for JKerMor ReducedModels.");
 		}
 		
 		return res;
