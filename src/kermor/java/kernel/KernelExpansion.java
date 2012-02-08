@@ -45,4 +45,9 @@ public class KernelExpansion implements ICoreFun {
 		return res;
 	}
 
+	@Override
+	public boolean timeDependent() {
+		return TimeKernel != null;
+	}
+
 }

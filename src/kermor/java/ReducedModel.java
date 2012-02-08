@@ -9,9 +9,13 @@ import org.apache.commons.math.linear.Array2DRowRealMatrix;
 import org.apache.commons.math.linear.RealMatrix;
 import org.apache.commons.math.ode.DerivativeException;
 import org.apache.commons.math.ode.FirstOrderIntegrator;
+import org.apache.commons.math.ode.nonstiff.AdamsMoultonIntegrator;
 import org.apache.commons.math.ode.nonstiff.EulerIntegrator;
 import org.apache.commons.math.ode.sampling.FixedStepHandler;
+import org.apache.commons.math.ode.sampling.StepHandler;
+import org.apache.commons.math.ode.sampling.StepInterpolator;
 import org.apache.commons.math.ode.sampling.StepNormalizer;
+
 
 import rmcommon.ModelType;
 import rmcommon.Parameters;
@@ -26,7 +30,7 @@ import rmcommon.io.MathObjectReader.MathReaderException;
  * @author Daniel Wirtz
  *
  */
-public class ReducedModel implements FixedStepHandler {
+public class ReducedModel implements FixedStepHandler {//, StepHandler {
 	
 	public ReducedSystem system;
 	
@@ -46,7 +50,7 @@ public class ReducedModel implements FixedStepHandler {
 	private double dt = .1;
 	private double T = 1;
 	
-	public void simulate(double[] mu) throws KerMorException {
+	public void simulate(double[] mu, int input) throws KerMorException {
 		if (mu == null && params != null) {
 			throw new KerMorException("Simulation without a parameter when parameters are configured are not allowed.");
 		}
@@ -54,7 +58,7 @@ public class ReducedModel implements FixedStepHandler {
 		double[] out = new double[system.getDimension()];
 		output = new Array2DRowRealMatrix(system.C.getOutputDimension(), times.length);
 		this.mu = mu;
-		this.system.setConfig(mu, 1);
+		this.system.setConfig(mu, input);
 		
 		try {
 			integrator.integrate(system, 0, system.x0.evaluate(mu), T, out);
@@ -65,12 +69,6 @@ public class ReducedModel implements FixedStepHandler {
 	
 	public RealMatrix getOutput() {
 		return output;
-	}
-	
-	@Override
-	public void handleStep(double t, double[] x, double[] xDot, boolean isLast)
-			throws DerivativeException {
-		output.setColumn(cnt++, system.C.evaluate(t, x, mu));
 	}
 	
 	public double getT() {
@@ -100,7 +98,7 @@ public class ReducedModel implements FixedStepHandler {
 	
 		if (mng.getModelType() == ModelType.JKerMor) {
 			
-			String hlp = mng.getModelXMLTagValue("dt");
+			String hlp = mng.getModelXMLTagValue("kermor_model.dt");
 			res.setdt(Double.parseDouble(hlp));
 			hlp = mng.getModelXMLTagValue("T");
 			res.setT(Double.parseDouble(hlp));
@@ -112,8 +110,15 @@ public class ReducedModel implements FixedStepHandler {
 			res.system = ReducedSystem.load(mng);
 			
 			// The ODE integrator
-			res.integrator = new EulerIntegrator(res.dt);
+			hlp = mng.getModelXMLTagValue("kermor_model.solvertype");
+			if ("implicit".equals(hlp)) {
+				res.integrator = new ImplicitLinearEulerIntegrator(res, res.dt);
+				//res.integrator = new AdamsMoultonIntegrator(3, 1e-10*res.dt, res.dt, 1e-4, 1e-3);
+			} else {
+				res.integrator = new EulerIntegrator(res.dt);
+			}
 			res.integrator.addStepHandler(new StepNormalizer(res.dt, res));
+			
 			
 			if (mng.xmlTagExists("model.geometry")) {
 				res.geo = new GeometryData();
@@ -125,4 +130,31 @@ public class ReducedModel implements FixedStepHandler {
 		
 		return res;
 	}
+	
+	////////// FixedStepHandler methods
+	@Override
+	public void handleStep(double t, double[] x, double[] xDot, boolean isLast)
+			throws DerivativeException {
+		output.setColumn(cnt++, system.C.evaluate(t, x, mu));
+	}
+	
+//	////////// StepHandler methods
+//	@Override
+//	public boolean requiresDenseOutput() {
+//		return false;
+//	}
+//
+//	@Override
+//	public void reset() {
+//		cnt = 0;
+//	}
+//
+//	@Override
+//	public void handleStep(StepInterpolator interpolator, boolean isLast)
+//			throws DerivativeException {
+//		double t = interpolator.getInterpolatedTime();
+//		double[] x = interpolator.getInterpolatedState(); 
+//		output.setColumn(cnt++, system.C.evaluate(t, x, mu));
+//	}
+
 }

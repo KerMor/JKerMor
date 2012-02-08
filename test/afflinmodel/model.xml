@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model type="JKerMor" machformat="be">
+	<description>
+		<short>Reduced: DynLin Timoschenko Beam</short>
+	</description>
+	<kermor_model>
+		<T>10.00000000000000000</T>
+		<dt>0.10000000000000001</dt>
+	<dim>28</dim>
+	<jkermorpackage>models.beam.dynlintimo</jkermorpackage>
+	<solvertype>implicit</solvertype>
+	<parameters>
+		<param name="d1" min="0.00000000000000000" max="2.00000000000000000" label="d1"/>
+		<param name="d2" min="0.00000000000000000" max="0.10000000000000001" label="d2"/>
+		<param name="gravity constant" min="-20.00000000000000000" max="20.00000000000000000" label="gravity constant"/>
+	</parameters>
+	<corefun type="dscomponents.AffLinCoreFun">
+		<coeffclass>CoreFunCoeffs</coeffclass>
+	</corefun>
+	<inputconv type="dscomponents.AffLinInputConv">
+		<coeffclass>InputConvCoeffs</coeffclass>
+	</inputconv>
+	<massmatrix type="dscomponents.ConstMassMatrix">
+	</massmatrix>
+	<outputconvtype>dscomponents.LinearOutputConv</outputconvtype>
+	<initialvaluetype>dscomponents.ConstInitialValue</initialvaluetype>
+	</kermor_model>
+<geometry>
+</geometry>
+</model>

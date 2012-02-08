@@ -29,4 +29,9 @@ public class LinearCoreFun implements ICoreFun {
 		return A.operate(x);
 	}
 
+	@Override
+	public boolean timeDependent() {
+		return false;
+	}
+
 }

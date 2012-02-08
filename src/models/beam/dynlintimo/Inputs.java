@@ -7,7 +7,7 @@ import kermor.java.dscomp.IInputFunctions;
 
 /**
  * @author CreaByte
- *
+ * 
  */
 public class Inputs implements IInputFunctions {
 
@@ -24,7 +24,22 @@ public class Inputs implements IInputFunctions {
 	 */
 	@Override
 	public double[] evaluate(double t, int idx) {
-		return new double[]{t};
+		double w = Math.PI * 2 * t / 10;
+		switch (idx) {
+		case 0:
+			return new double[] { 1, 0, 0, -1 };
+		case 1:
+			return new double[] { 1, -1, 0, 0 };
+		case 2:
+			return new double[] { 1, 0, -1, 0 };
+		case 3:
+			return new double[] { 1, Math.sin(t), 0, 0 };
+		case 4:
+			return new double[] { 1, Math.sin(w), Math.cos(w), 0 };
+		case 5:
+			return new double[] { 1, 0, Math.sin(w), Math.cos(w) };
+		default:
+			return new double[] { 1, 0, 0, 0 };
+		}
 	}
-
 }
