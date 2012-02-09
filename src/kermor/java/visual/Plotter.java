@@ -43,7 +43,16 @@ public class Plotter extends ApplicationFrame {
 		plot(times, y, rm.name);
 	}
 	
+	public void plotResult(double[] times, float[][] y, ReducedModel rm) {
+		plot(times, y, rm.name);
+	}
+	
 	public void plot(double[] times, RealMatrix y, String chartname) {
+		final XYDataset dataset = createDataset(times, y);
+		plot(times, dataset, chartname);
+	}
+	
+	public void plot(double[] times, float[][] y, String chartname) {
 		final XYDataset dataset = createDataset(times, y);
 		plot(times, dataset, chartname);
 	}
@@ -72,6 +81,18 @@ public class Plotter extends ApplicationFrame {
 			XYSeries series = new XYSeries("Dim " + (i + 1));
 			for (int j = 0; j < y.getColumnDimension(); j++) {
 				series.add(times[j], y.getEntry(i, j));
+			}
+			dataset.addSeries(series);
+		}
+		return dataset;
+	}
+	
+	private XYDataset createDataset(double[] times, float[][] y) {
+		XYSeriesCollection dataset = new XYSeriesCollection();
+		for (int i = 0; i < y.length; i++) {
+			XYSeries series = new XYSeries("Dim " + (i + 1));
+			for (int j = 0; j < y[i].length; j++) {
+				series.add(times[j], y[i][j]);
 			}
 			dataset.addSeries(series);
 		}
