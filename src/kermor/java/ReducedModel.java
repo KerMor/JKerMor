@@ -5,15 +5,10 @@ package kermor.java;
 
 import java.io.IOException;
 
-import org.apache.commons.math.linear.Array2DRowRealMatrix;
-import org.apache.commons.math.linear.RealMatrix;
 import org.apache.commons.math.ode.DerivativeException;
 import org.apache.commons.math.ode.FirstOrderIntegrator;
-import org.apache.commons.math.ode.nonstiff.AdamsMoultonIntegrator;
 import org.apache.commons.math.ode.nonstiff.EulerIntegrator;
 import org.apache.commons.math.ode.sampling.FixedStepHandler;
-import org.apache.commons.math.ode.sampling.StepHandler;
-import org.apache.commons.math.ode.sampling.StepInterpolator;
 import org.apache.commons.math.ode.sampling.StepNormalizer;
 
 import rmcommon.ModelType;
@@ -21,7 +16,6 @@ import rmcommon.Parameters;
 import rmcommon.Util;
 import rmcommon.geometry.GeometryData;
 import rmcommon.io.AModelManager;
-import rmcommon.io.MathObjectReader;
 import rmcommon.io.MathObjectReader.MathReaderException;
 
 /**

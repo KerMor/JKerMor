@@ -5,7 +5,6 @@ import static org.junit.Assert.fail;
 import kermor.java.ReducedModel;
 import kermor.java.visual.Plotter;
 
-import org.apache.commons.math.linear.Array2DRowFieldMatrix;
 import org.apache.commons.math.linear.RealMatrix;
 import org.junit.Test;
 
