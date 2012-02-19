@@ -43,7 +43,7 @@ public class Plotter extends ApplicationFrame {
 		plot(times, y, rm.name);
 	}
 	
-	public void plotResult(double[] times, float[][] y, ReducedModel rm) {
+	public void plotResult(double[] times, double[][] y, ReducedModel rm) {
 		plot(times, y, rm.name);
 	}
 	
@@ -52,7 +52,7 @@ public class Plotter extends ApplicationFrame {
 		plot(times, dataset, chartname);
 	}
 	
-	public void plot(double[] times, float[][] y, String chartname) {
+	public void plot(double[] times, double[][] y, String chartname) {
 		final XYDataset dataset = createDataset(times, y);
 		plot(times, dataset, chartname);
 	}
@@ -87,7 +87,7 @@ public class Plotter extends ApplicationFrame {
 		return dataset;
 	}
 	
-	private XYDataset createDataset(double[] times, float[][] y) {
+	private XYDataset createDataset(double[] times, double[][] y) {
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		for (int i = 0; i < y.length; i++) {
 			XYSeries series = new XYSeries("Dim " + (i + 1));

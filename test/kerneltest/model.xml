@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<model type="kermor" machformat="be">
+<model type="JKerMor" machformat="be">
 	<description>
 		<short>Reduced: DynLin Timoschenko Beam</short>
 		<image>modelimage.png</image>
 	</description>
+	<package>models.beam.dynlintimo</package>
 	<kermor_model>
 		<T>5.00000000000000000</T>
 		<dt>0.05000000000000000</dt>
 	<dim>10</dim>
 	<parameters>
 	</parameters>
-	<corefun>
-		<corefuntype>dscomponents.LinearCoreFun</corefuntype>
+	<corefun type="dscomponents.LinearCoreFun">
 	</corefun>
-	<inputconvtype>dscomponents.LinearInputConv</inputconvtype>
+	<inputconv type="dscomponents.LinearInputConv"></inputconv>
 	<outputconvtype>dscomponents.LinearOutputConv</outputconvtype>
 	<initialvaluetype>dscomponents.ConstInitialValue</initialvaluetype>
 	</kermor_model>
-<affinefunctions>
-	<package>models.beam.dynlintimo</package>
-</affinefunctions>
 </model>

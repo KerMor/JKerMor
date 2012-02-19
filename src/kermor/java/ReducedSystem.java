@@ -30,6 +30,7 @@ import rmcommon.Util;
 import rmcommon.affine.AffParamMatrix;
 import rmcommon.affine.IAffineCoefficients;
 import rmcommon.io.AModelManager;
+import rmcommon.io.AModelManager.ModelManagerException;
 import rmcommon.io.MathObjectReader;
 import rmcommon.io.MathObjectReader.MathReaderException;
 
@@ -83,8 +84,16 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 		}
 	}
 
+	/**
+	 * 
+	 * @param mng
+	 * @return
+	 * @throws MathReaderException - If errors reading math objects occur
+	 * @throws ModelManagerException - If errors loading presumably existent model files occur
+	 * @throws IOException - If errors loading files from the model's source do occur
+	 */
 	public static ReducedSystem load(AModelManager mng)
-			throws MathReaderException, IOException {
+			throws MathReaderException, ModelManagerException, IOException {
 		ReducedSystem res = new ReducedSystem();
 
 		res.dim = Integer.parseInt(mng.getModelXMLTagValue("dim"));
@@ -114,32 +123,19 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 	
 
 	private static void loadInputs(AModelManager mng, ReducedSystem res)
-			throws IOException {
+			throws IOException, ModelManagerException {
 		// Inputs
 		MathObjectReader r = mng.getMathObjReader();
-		ClassLoader cl = mng.getClassLoader();
 		String hlp;
 		if (mng.xmlTagExists("kermor_model.inputconv")) {
-			try {
-				Class<?> af = cl.loadClass(getModelPackageStr(mng) + "Inputs");
-				res.u = (IInputFunctions) af.newInstance();
-			} catch (Exception e) {
-				throw new IOException("Error loading the input functions.", e);
-			}
+			res.u = (IInputFunctions) mng.loadModelClass("Inputs");
 			hlp = mng.getModelXMLAttribute("type","kermor_model.inputconv");
 			if ("dscomponents.LinearInputConv".equals(hlp)) {
 				res.B = new LinearInputConv(r.readMatrix(mng
 						.getInStream("B.bin")));
 			} else if ("dscomponents.AffLinInputConv".equals(hlp)) {
 				IAffineCoefficients coeff = null;
-				try {
-					Class<?> af = cl.loadClass(getModelPackageStr(mng)
-							+ mng.getModelXMLTagValue("inputconv.coeffclass"));
-					coeff = (IAffineCoefficients) af.newInstance();
-				} catch (Exception e) {
-					throw new IOException("Error loading the input functions.",
-							e);
-				}
+				coeff = (IAffineCoefficients) mng.loadModelClass(mng.getModelXMLTagValue("inputconv.coeffclass"));
 				AffParamMatrix a = new AffParamMatrix(r.readMatrix(mng
 						.getInStream("B.bin")), res.dim, coeff);
 				res.B = new AffineInputConv(a);
@@ -148,9 +144,8 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 	}
 
 	private static void loadCoreFun(AModelManager mng, ReducedSystem res)
-			throws IOException, MathReaderException {
+			throws IOException, MathReaderException, ModelManagerException {
 		MathObjectReader r = mng.getMathObjReader();
-		ClassLoader cl = mng.getClassLoader();
 		String type = mng.getModelXMLAttribute("type", "corefun");
 		if ("dscomponents.ParamTimeKernelCoreFun".equals(type)) {
 			KernelExpansion k = new KernelExpansion();
@@ -173,15 +168,7 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 			res.f = new LinearCoreFun(r.readMatrix(mng.getInStream("A.bin")));
 		} else if ("dscomponents.AffLinCoreFun".equals(type)) {
 			IAffineCoefficients coeff = null;
-			try {
-				Class<?> af = cl.loadClass(getModelPackageStr(mng)
-						+ mng.getModelXMLTagValue("corefun.coeffclass"));
-				coeff = (IAffineCoefficients) af.newInstance();
-			} catch (Exception e) {
-				throw new IOException(
-						"Error loading the coefficient functions for affine time/parameter-dependent core function.",
-						e);
-			}
+			coeff = (IAffineCoefficients) mng.loadModelClass(mng.getModelXMLTagValue("corefun.coeffclass"));
 			AffParamMatrix a = new AffParamMatrix(r.readMatrix(mng
 					.getInStream("A.bin")), res.dim, coeff);
 			res.f = new AffParamTimeCoreFun(a);
@@ -191,10 +178,9 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 	}
 	
 	private static void loadMassMatrix(AModelManager mng, ReducedSystem res)
-			throws IOException {
+			throws IOException, ModelManagerException {
 		// Inputs
 		MathObjectReader r = mng.getMathObjReader();
-		ClassLoader cl = mng.getClassLoader();
 		String hlp;
 		if (mng.xmlTagExists("kermor_model.massmatrix")) {
 			hlp = mng.getModelXMLAttribute("type","kermor_model.massmatrix");
@@ -202,15 +188,7 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 				res.M = new ConstMassMatrix(r.readMatrix(mng
 						.getInStream("M.bin")));
 			} else if ("dscomponents.AffLinMassMatrix".equals(hlp)) {
-				IAffineCoefficients coeff = null;
-				try {
-					Class<?> af = cl.loadClass(getModelPackageStr(mng)
-							+ mng.getModelXMLTagValue("massmatrix.coeffclass"));
-					coeff = (IAffineCoefficients) af.newInstance();
-				} catch (Exception e) {
-					throw new IOException("Error loading the input functions.",
-							e);
-				}
+				IAffineCoefficients coeff = (IAffineCoefficients) mng.loadModelClass(mng.getModelXMLTagValue("massmatrix.coeffclass"));
 				throw new RuntimeException("Not yet implemented.");
 //				AffParamMatrix a = new AffParamMatrix(r.readMatrix(mng
 //						.getInStream("B.bin")), res.dim, coeff);
@@ -234,11 +212,4 @@ public class ReducedSystem implements FirstOrderDifferentialEquations {
 		r = null;
 		return res;
 	}
-
-	private static String getModelPackageStr(AModelManager mng) {
-		String thepackage = mng
-				.getModelXMLTagValue("kermor_model.jkermorpackage");
-		return thepackage != null ? thepackage + "." : "";
-	}
-
 }

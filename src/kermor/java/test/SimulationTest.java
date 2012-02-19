@@ -10,68 +10,67 @@ import org.junit.Test;
 
 import rmcommon.io.FileModelManager;
 
-
 public class SimulationTest {
 
-	//@Test
+	// @Test
 	public void testSimulate() {
 		try {
 			FileModelManager m = new FileModelManager("./test");
-			m.setModelDir("kerneltest");
-			ReducedModel r = ReducedModel.load(m);
-			
+			m.useModel("kerneltest");
+			ReducedModel r = new ReducedModel();
+			r.loadOfflineData(m);
+
 			r.setT(7);
 			double[] mu = r.params.getRandomParam();
-			
-			//mu[0] = 0; mu[1] = 0;
-			RealMatrix res = null; 
+
+			// mu[0] = 0; mu[1] = 0;
+			RealMatrix res = null;
 			r.simulate(mu, -1);
-			
+
 			Plotter p = new Plotter(r.name);
 			p.plotResult(r.getTimes(), res, r);
-			
-			while(p.isVisible()) {}
-			
-//			System.out.print(Util.realMatToString(res));
-			
+
+			while (p.isVisible()) {
+			}
+
+			// System.out.print(Util.realMatToString(res));
+
 			assertTrue(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void testSimulateAfflinModel() {
 		try {
 			FileModelManager m = new FileModelManager("./test");
-			m.setModelDir("afflinmodel");
-			ReducedModel r = ReducedModel.load(m);
-			
+			m.useModel("afflinmodel");
+			ReducedModel r = new ReducedModel();
+			r.loadOfflineData(m);
+
 			r.setT(7);
-//			double[] mu = r.params.getRandomParam();
-			double[] mu = new double[]{0.3, 0.01, 9.81};
-			//mu[0] = 0; mu[1] = 0;
+			// double[] mu = r.params.getRandomParam();
+			double[] mu = new double[] { 0.3, 0.01, 9.81 };
+			// mu[0] = 0; mu[1] = 0;
 			r.simulate(mu, 1);
-			float[][] res = r.getOutput();
-			
+			double[][] res = r.getOutput();
+			System.out.println(res.length + " x " + res[0].length + ", times: "
+					+ r.getTimes().length);
+
 			Plotter p = new Plotter(r.name);
 			p.plotResult(r.getTimes(), res, r);
-			
-			while(p.isVisible()) {}
-			
-//			System.out.print(Util.realMatToString(res));
-			
+
+			while (p.isVisible()) {
+			}
+
+			// System.out.print(Util.realMatToString(res));
+
 			assertTrue(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}
-
-//	@Test
-//	public void testGetTimes() {
-//		fail("Not yet implemented");
-//	}
-
 }
