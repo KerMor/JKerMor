@@ -76,10 +76,10 @@ public class ReducedModel extends ModelBase implements FixedStepHandler {// ,
 
 	public SimulationResult getSimulationResult() {
 		double[][] dof_fields = converter.transformOutputToDoFs(output.getData());
-		SimulationResult res = new SimulationResult();
+		SimulationResult res = new SimulationResult(1);
 		int fnumcnt = 0;
 		for (FieldDescriptor sftype : logicalFieldTypes) {
-			if (fnumcnt + sftype.Type.requiredOutputFields > getNumDoFFields()) {
+			if (fnumcnt + sftype.Type.requiredDoFFields > getNumDoFFields()) {
 				throw new RuntimeException("Too many output fields used by current "
 						+ "SolutionFieldTypes set in RBSystem. Check your model.xml.");
 			}
@@ -102,7 +102,7 @@ public class ReducedModel extends ModelBase implements FixedStepHandler {// ,
 			 * Increase field counter by the amount the current solution field
 			 * used
 			 */
-			fnumcnt += sftype.Type.requiredOutputFields;
+			fnumcnt += sftype.Type.requiredDoFFields;
 		}
 		return res;
 	}
