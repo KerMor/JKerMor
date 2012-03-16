@@ -15,13 +15,10 @@ import org.apache.commons.math.ode.sampling.StepNormalizer;
 
 import rmcommon.FieldDescriptor;
 import rmcommon.ModelBase;
-import rmcommon.ModelType;
 import rmcommon.Parameters;
-import rmcommon.DefaultSolutionField;
 import rmcommon.SimulationResult;
 import rmcommon.Util;
 import rmcommon.geometry.DisplacementField;
-import rmcommon.geometry.GeometryData;
 import rmcommon.io.AModelManager;
 import rmcommon.io.AModelManager.ModelManagerException;
 import rmcommon.io.MathObjectReader.MathReaderException;
