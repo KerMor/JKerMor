@@ -3,7 +3,7 @@
  */
 package models.beam.dynlintimo;
 
-import rmcommon.affine.IAffineCoefficients;
+import jarmos.affine.IAffineCoefficients;
 
 /**
  * Coefficient functions for the models.beam.DLTLinearCoreFun class used by the
@@ -17,7 +17,7 @@ public class CoreFunCoeffs implements IAffineCoefficients {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see rmcommon.affine.IAffineCoefficients#getNumCoeffFcns()
+	 * @see jarmos.affine.IAffineCoefficients#getNumCoeffFcns()
 	 */
 	@Override
 	public int getNumCoeffFcns() {
@@ -27,7 +27,7 @@ public class CoreFunCoeffs implements IAffineCoefficients {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see rmcommon.affine.IAffineCoefficients#evaluateCoefficient(double,
+	 * @see jarmos.affine.IAffineCoefficients#evaluateCoefficient(double,
 	 * double[])
 	 */
 	@Override
@@ -38,7 +38,7 @@ public class CoreFunCoeffs implements IAffineCoefficients {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see rmcommon.affine.IAffineCoefficients#isTimeDependent()
+	 * @see jarmos.affine.IAffineCoefficients#isTimeDependent()
 	 */
 	@Override
 	public boolean isTimeDependent() {

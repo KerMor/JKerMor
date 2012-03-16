@@ -3,7 +3,7 @@
  */
 package models.beam.dynlintimo;
 
-import rmcommon.affine.IAffineCoefficients;
+import jarmos.affine.IAffineCoefficients;
 
 /**
  * @author CreaByte
@@ -14,7 +14,7 @@ public class InputConvCoeffs implements IAffineCoefficients {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see rmcommon.affine.IAffineCoefficients#getNumCoeffFcns()
+	 * @see jarmos.affine.IAffineCoefficients#getNumCoeffFcns()
 	 */
 	@Override
 	public int getNumCoeffFcns() {
@@ -24,7 +24,7 @@ public class InputConvCoeffs implements IAffineCoefficients {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see rmcommon.affine.IAffineCoefficients#evaluateCoefficients(double,
+	 * @see jarmos.affine.IAffineCoefficients#evaluateCoefficients(double,
 	 * double[])
 	 */
 	@Override
@@ -35,7 +35,7 @@ public class InputConvCoeffs implements IAffineCoefficients {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see rmcommon.affine.IAffineCoefficients#isTimeDependent()
+	 * @see jarmos.affine.IAffineCoefficients#isTimeDependent()
 	 */
 	@Override
 	public boolean isTimeDependent() {

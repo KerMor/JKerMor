@@ -3,9 +3,10 @@
  */
 package kermor.java.dscomp;
 
+import jarmos.affine.AffParamMatrix;
+
 import org.apache.commons.math.linear.RealMatrix;
 
-import rmcommon.affine.AffParamMatrix;
 
 /**
  * @author CreaByte

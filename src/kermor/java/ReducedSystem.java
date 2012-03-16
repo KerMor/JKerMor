@@ -3,6 +3,14 @@
  */
 package kermor.java;
 
+import jarmos.Util;
+import jarmos.affine.AffParamMatrix;
+import jarmos.affine.IAffineCoefficients;
+import jarmos.io.AModelManager;
+import jarmos.io.MathObjectReader;
+import jarmos.io.AModelManager.ModelManagerException;
+import jarmos.io.MathObjectReader.MathReaderException;
+
 import java.io.IOException;
 
 import kermor.java.dscomp.AffParamTimeCoreFun;
@@ -26,13 +34,6 @@ import kermor.java.kernel.LinearKernel;
 import org.apache.commons.math.ode.DerivativeException;
 import org.apache.commons.math.ode.FirstOrderDifferentialEquations;
 
-import rmcommon.Util;
-import rmcommon.affine.AffParamMatrix;
-import rmcommon.affine.IAffineCoefficients;
-import rmcommon.io.AModelManager;
-import rmcommon.io.AModelManager.ModelManagerException;
-import rmcommon.io.MathObjectReader;
-import rmcommon.io.MathObjectReader.MathReaderException;
 
 /**
  * @author Ernst

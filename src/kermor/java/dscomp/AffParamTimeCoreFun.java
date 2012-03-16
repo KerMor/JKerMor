@@ -3,7 +3,7 @@
  */
 package kermor.java.dscomp;
 
-import rmcommon.affine.AffParamMatrix;
+import jarmos.affine.AffParamMatrix;
 
 /**
  * @author CreaByte

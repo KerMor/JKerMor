@@ -3,6 +3,16 @@
  */
 package kermor.java;
 
+import jarmos.FieldDescriptor;
+import jarmos.ModelBase;
+import jarmos.Parameters;
+import jarmos.SimulationResult;
+import jarmos.Util;
+import jarmos.geometry.DisplacementField;
+import jarmos.io.AModelManager;
+import jarmos.io.AModelManager.ModelManagerException;
+import jarmos.io.MathObjectReader.MathReaderException;
+
 import java.io.IOException;
 
 import org.apache.commons.math.linear.Array2DRowRealMatrix;
@@ -13,15 +23,6 @@ import org.apache.commons.math.ode.nonstiff.EulerIntegrator;
 import org.apache.commons.math.ode.sampling.FixedStepHandler;
 import org.apache.commons.math.ode.sampling.StepNormalizer;
 
-import rmcommon.FieldDescriptor;
-import rmcommon.ModelBase;
-import rmcommon.Parameters;
-import rmcommon.SimulationResult;
-import rmcommon.Util;
-import rmcommon.geometry.DisplacementField;
-import rmcommon.io.AModelManager;
-import rmcommon.io.AModelManager.ModelManagerException;
-import rmcommon.io.MathObjectReader.MathReaderException;
 
 /**
  * @author Daniel Wirtz
