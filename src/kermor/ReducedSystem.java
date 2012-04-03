@@ -7,8 +7,8 @@ import jarmos.Util;
 import jarmos.affine.AffParamMatrix;
 import jarmos.affine.IAffineCoefficients;
 import jarmos.io.AModelManager;
-import jarmos.io.MathObjectReader;
 import jarmos.io.AModelManager.ModelManagerException;
+import jarmos.io.MathObjectReader;
 import jarmos.io.MathObjectReader.MathReaderException;
 
 import java.io.IOException;
