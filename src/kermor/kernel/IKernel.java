@@ -1,4 +1,4 @@
-package kermor.java.kernel;
+package kermor.kernel;
 
 import org.apache.commons.math.linear.RealMatrix;
 

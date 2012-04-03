@@ -1,12 +1,12 @@
 /**
  * 
  */
-package kermor.java.test;
+package kermor.test;
 
 import jarmos.Util;
-import kermor.java.kernel.GaussKernel;
-import kermor.java.kernel.IKernel;
-import kermor.java.visual.Plotter;
+import kermor.kernel.GaussKernel;
+import kermor.kernel.IKernel;
+import kermor.visual.Plotter;
 
 import org.junit.Test;
 
@@ -33,7 +33,7 @@ public class GaussKernelTest {
 	}
 
 //	/**
-//	 * Test method for {@link kermor.java.kernel.GaussKernel#evaluate(org.apache.commons.math.linear.RealMatrix, org.apache.commons.math.linear.RealMatrix)}.
+//	 * Test method for {@link kermor.kernel.GaussKernel#evaluate(org.apache.commons.math.linear.RealMatrix, org.apache.commons.math.linear.RealMatrix)}.
 //	 */
 //	@Test
 //	public void testEvaluateRealMatrixRealMatrix() {
@@ -41,7 +41,7 @@ public class GaussKernelTest {
 //	}
 //
 //	/**
-//	 * Test method for {@link kermor.java.kernel.GaussKernel#evaluate(double[], org.apache.commons.math.linear.RealMatrix)}.
+//	 * Test method for {@link kermor.kernel.GaussKernel#evaluate(double[], org.apache.commons.math.linear.RealMatrix)}.
 //	 */
 //	@Test
 //	public void testEvaluateDoubleArrayRealMatrix() {
@@ -49,7 +49,7 @@ public class GaussKernelTest {
 //	}
 //
 //	/**
-//	 * Test method for {@link kermor.java.kernel.GaussKernel#evaluate(double, double[])}.
+//	 * Test method for {@link kermor.kernel.GaussKernel#evaluate(double, double[])}.
 //	 */
 //	@Test
 //	public void testEvaluateDoubleDoubleArray() {

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package kermor.java.kernel;
+package kermor.kernel;
 
 import org.apache.commons.math.linear.RealMatrix;
 
@@ -12,7 +12,7 @@ import org.apache.commons.math.linear.RealMatrix;
 public class LinearKernel implements IKernel {
 
 	/* (non-Javadoc)
-	 * @see kermor.java.kernel.IKernel#evaluate(org.apache.commons.math.linear.RealMatrix, org.apache.commons.math.linear.RealMatrix)
+	 * @see kermor.kernel.IKernel#evaluate(org.apache.commons.math.linear.RealMatrix, org.apache.commons.math.linear.RealMatrix)
 	 */
 	@Override
 	public RealMatrix evaluate(RealMatrix x, RealMatrix y) {
@@ -21,7 +21,7 @@ public class LinearKernel implements IKernel {
 	}
 
 	/* (non-Javadoc)
-	 * @see kermor.java.kernel.IKernel#evaluate(double[], org.apache.commons.math.linear.RealMatrix)
+	 * @see kermor.kernel.IKernel#evaluate(double[], org.apache.commons.math.linear.RealMatrix)
 	 */
 	@Override
 	public double[] evaluate(double[] x, RealMatrix y) {
@@ -30,7 +30,7 @@ public class LinearKernel implements IKernel {
 	}
 
 	/* (non-Javadoc)
-	 * @see kermor.java.kernel.IKernel#evaluate(double, double[])
+	 * @see kermor.kernel.IKernel#evaluate(double, double[])
 	 */
 	@Override
 	public double[] evaluate(double t, double[] ti) {

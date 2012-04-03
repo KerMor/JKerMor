@@ -3,7 +3,7 @@
  */
 package models.beam.dynlintimo;
 
-import kermor.java.dscomp.IInputFunctions;
+import kermor.dscomp.IInputFunctions;
 
 /**
  * @author CreaByte
@@ -12,7 +12,7 @@ import kermor.java.dscomp.IInputFunctions;
 public class Inputs implements IInputFunctions {
 
 	/**
-	 * @see kermor.java.dscomp.IInputFunctions#getNumFunctions()
+	 * @see kermor.dscomp.IInputFunctions#getNumFunctions()
 	 */
 	@Override
 	public int getNumFunctions() {
@@ -20,7 +20,7 @@ public class Inputs implements IInputFunctions {
 	}
 
 	/**
-	 * @see kermor.java.dscomp.IInputFunctions#evaluate(double, int)
+	 * @see kermor.dscomp.IInputFunctions#evaluate(double, int)
 	 */
 	@Override
 	public double[] evaluate(double t, int idx) {

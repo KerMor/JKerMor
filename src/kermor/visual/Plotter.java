@@ -1,9 +1,9 @@
 /**
  * 
  */
-package kermor.java.visual;
+package kermor.visual;
 
-import kermor.java.ReducedModel;
+import kermor.ReducedModel;
 
 import org.apache.commons.math.linear.RealMatrix;
 import org.jfree.chart.ChartFactory;
