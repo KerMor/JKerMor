@@ -10,9 +10,6 @@ import kermor.visual.Plotter;
 
 import org.junit.Test;
 
-
-
-
 /**
  * @author dwirtz
  *
