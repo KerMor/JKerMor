@@ -1,4 +1,3 @@
-
 package models.beam.dynlintimo;
 
 import kermor.dscomp.IInputFunctions;

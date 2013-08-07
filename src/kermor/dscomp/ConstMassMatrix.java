@@ -8,12 +8,12 @@ import org.apache.commons.math.linear.RealMatrix;
  * @see @ref jkermor_dynsys
  * 
  * @author Daniel Wirtz
- *
+ * 
  */
 public class ConstMassMatrix implements IMassMatrix {
-	
+
 	RealMatrix M;
-	
+
 	public ConstMassMatrix(RealMatrix M) {
 		this.M = M;
 	}

@@ -1,4 +1,3 @@
-
 package models.beam.dynlintimo;
 
 import jarmos.affine.IAffineCoefficients;

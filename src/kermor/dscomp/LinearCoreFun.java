@@ -1,4 +1,3 @@
-
 package kermor.dscomp;
 
 import org.apache.commons.math.linear.RealMatrix;
@@ -9,14 +8,15 @@ import org.apache.commons.math.linear.RealMatrix;
  * @see @ref jkermor_dynsys
  * 
  * @author Daniel Wirtz
- *
+ * 
  */
 public class LinearCoreFun implements ICoreFun {
-	
+
 	private RealMatrix A;
-	
+
 	/**
 	 * Creates a new linear core function
+	 * 
 	 * @param A
 	 */
 	public LinearCoreFun(RealMatrix A) {

@@ -1,4 +1,3 @@
-
 package kermor.dscomp;
 
 /**
@@ -7,12 +6,12 @@ package kermor.dscomp;
  * @see @ref jkermor_dynsys
  * 
  * @author Daniel Wirtz @date 2013-08-07
- *
+ * 
  */
 public interface IInputFunctions {
-	
+
 	public int getNumFunctions();
 
 	public double[] evaluate(double t, int idx);
-	
+
 }

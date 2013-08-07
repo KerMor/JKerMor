@@ -29,11 +29,10 @@ public class Plotter extends ApplicationFrame {
 	private static final long serialVersionUID = 5905547086247935278L;
 
 	/**
-	 * A demonstration application showing how to create a simple time series
-	 * chart.
+	 * A demonstration application showing how to create a simple time series chart.
 	 * 
 	 * @param title
-	 *            the frame title.
+	 * the frame title.
 	 */
 	public Plotter(final String title) {
 		super(title);
@@ -43,30 +42,29 @@ public class Plotter extends ApplicationFrame {
 	public void plotResult(double[] times, RealMatrix y, ReducedModel rm) {
 		plot(times, y, rm.name);
 	}
-	
+
 	public void plotResult(double[] times, double[][] y, ReducedModel rm) {
 		plot(times, y, rm.name);
 	}
-	
+
 	public void plot(double[] times, RealMatrix y, String chartname) {
 		final XYDataset dataset = createDataset(times, y);
 		plot(times, dataset, chartname);
 	}
-	
+
 	public void plot(double[] times, double[][] y, String chartname) {
 		final XYDataset dataset = createDataset(times, y);
 		plot(times, dataset, chartname);
 	}
-	
+
 	public void plot(double[] x, double[] fx, String chartname) {
 		final XYDataset dataset = createDataset(x, fx);
 		plot(x, dataset, chartname);
 	}
-	
+
 	private void plot(double[] xdata, XYDataset y, String chartname) {
-		final JFreeChart chart = ChartFactory.createXYLineChart(chartname,
-				"time t", "outputs y_i", y, PlotOrientation.VERTICAL,
-				false, true, false);
+		final JFreeChart chart = ChartFactory.createXYLineChart(chartname, "time t", "outputs y_i", y,
+				PlotOrientation.VERTICAL, false, true, false);
 		final ChartPanel pnl = new ChartPanel(chart);
 		pnl.setPreferredSize(new java.awt.Dimension(500, 270));
 		pnl.setMouseZoomable(true, false);
@@ -87,7 +85,7 @@ public class Plotter extends ApplicationFrame {
 		}
 		return dataset;
 	}
-	
+
 	private XYDataset createDataset(double[] times, double[][] y) {
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		for (int i = 0; i < y.length; i++) {
@@ -99,7 +97,7 @@ public class Plotter extends ApplicationFrame {
 		}
 		return dataset;
 	}
-	
+
 	private XYDataset createDataset(double[] x, double[] fx) {
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		XYSeries series = new XYSeries("f(x)");

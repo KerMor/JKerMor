@@ -1,4 +1,3 @@
-
 package kermor.dscomp;
 
 import org.apache.commons.math.linear.RealMatrix;
@@ -9,11 +8,11 @@ import org.apache.commons.math.linear.RealMatrix;
  * @see @ref jkermor_dynsys
  * 
  * @author Daniel Wirtz
- *
+ * 
  */
 public interface IMassMatrix {
-	
+
 	public RealMatrix evaluate(double t, double[] mu);
-	
+
 	public boolean isTimeDependent();
 }

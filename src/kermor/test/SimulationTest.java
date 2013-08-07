@@ -11,7 +11,6 @@ import kermor.visual.Plotter;
 import org.apache.commons.math.linear.RealMatrix;
 import org.junit.Test;
 
-
 public class SimulationTest {
 
 	@Test
@@ -28,7 +27,7 @@ public class SimulationTest {
 			// mu[0] = 0; mu[1] = 0;
 			RealMatrix res = null;
 			r.simulate(mu, 1);
-			
+
 			VisualizationData v = new VisualizationData(r.getGeometry());
 			v.useResult(r.getSimulationResult());
 			v.computeVisualFeatures(new ColorGenerator());
@@ -48,7 +47,7 @@ public class SimulationTest {
 		}
 	}
 
-	//@Test
+	// @Test
 	public void testSimulateAfflinModel() {
 		try {
 			FileModelManager m = new FileModelManager("./test");
@@ -62,8 +61,7 @@ public class SimulationTest {
 			// mu[0] = 0; mu[1] = 0;
 			r.simulate(mu, 1);
 			double[][] res = r.getOutput();
-			System.out.println(res.length + " x " + res[0].length + ", times: "
-					+ r.getTimes().length);
+			System.out.println(res.length + " x " + res[0].length + ", times: " + r.getTimes().length);
 
 			Plotter p = new Plotter(r.name);
 			p.plotResult(r.getTimes(), res, r);
