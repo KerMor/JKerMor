@@ -3,6 +3,9 @@ package models.beam.dynlintimo;
 import kermor.dscomp.IInputFunctions;
 
 /**
+ * 
+ * Input functions for timoshenko beam model
+ * 
  * @author Daniel Wirtz
  * 
  */

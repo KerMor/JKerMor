@@ -3,12 +3,16 @@ package models.beam.dynlintimo;
 import kermor.IOutputToDoF;
 
 /**
+ * Extraction of values of interest for visualization in JKerMor
+ * 
+ * 
+ * 
  * @author Daniel Wirtz
  * 
  */
 public class TimoOutToDoF implements IOutputToDoF {
 
-	/* (non-Javadoc)
+	/**
 	 * @see kermor.IOutputToSimulationResult#getSimulationResult(double[][])
 	 */
 	@Override

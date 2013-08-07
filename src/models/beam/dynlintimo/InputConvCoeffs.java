@@ -3,6 +3,8 @@ package models.beam.dynlintimo;
 import jarmos.affine.IAffineCoefficients;
 
 /**
+ * Affine input mapping coefficient function implementation
+ *  
  * @author Daniel Wirtz
  * 
  */
