@@ -1,12 +1,10 @@
-/**
- * 
- */
+
 package models.beam.dynlintimo;
 
 import kermor.dscomp.IInputFunctions;
 
 /**
- * @author CreaByte
+ * @author Daniel Wirtz
  * 
  */
 public class Inputs implements IInputFunctions {

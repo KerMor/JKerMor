@@ -1,12 +1,10 @@
-/**
- * 
- */
+
 package models.beam.dynlintimo;
 
 import kermor.IOutputToDoF;
 
 /**
- * @author CreaByte
+ * @author Daniel Wirtz
  *
  */
 public class TimoOutToDoF implements IOutputToDoF {

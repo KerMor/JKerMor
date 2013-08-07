@@ -1,12 +1,11 @@
-/**
- * 
- */
 package kermor.dscomp;
 
 import jarmos.affine.AffParamMatrix;
 
 /**
- * @author CreaByte
+ * This class implements a time/parameter-affine linear core function @f$ A(t,\mu) = \sum\limits_{i=1}^n \theta_i(t,\mu)A_i @f$.
+ * 
+ * @author Daniel Wirtz
  * 
  */
 public class AffParamTimeCoreFun implements ICoreFun {
@@ -21,8 +20,7 @@ public class AffParamTimeCoreFun implements ICoreFun {
 		this.a = a;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
 	 * 
 	 * @see kermor.dscomp.ICoreFun#evaluate(double, double[], double[])
 	 */

@@ -1,18 +1,19 @@
-/**
- * 
- */
 package kermor.dscomp;
 
 import org.apache.commons.math.linear.RealMatrix;
 
 /**
- * @author Ernst
- *
+ * Constant linear output conversion @f$ C @f$
+ * 
+ * @see @ref jkermor_dynsys
+ * 
+ * @author Daniel Wirtz @date 2013-08-07
+ * 
  */
 public class LinearOutputConv implements IOutputConv {
-	
+
 	private RealMatrix C;
-	
+
 	public LinearOutputConv(RealMatrix C) {
 		this.C = C;
 	}

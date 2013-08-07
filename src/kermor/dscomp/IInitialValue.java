@@ -1,11 +1,12 @@
-/**
- * 
- */
 package kermor.dscomp;
 
 
 /**
- * @author Ernst
+ * Interface for initial values of dynamical systems.
+ * 
+ * @see @ref jkermor_dynsys
+ * 
+ * @author Daniel Wirtz @date 2013-08-07
  *
  */
 public interface IInitialValue {

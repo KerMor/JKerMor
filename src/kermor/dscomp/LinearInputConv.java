@@ -1,12 +1,14 @@
-/**
- * 
- */
+
 package kermor.dscomp;
 
 import org.apache.commons.math.linear.RealMatrix;
 
 /**
- * @author Ernst
+ * Constant linear input conversion @f$ B @f$
+ * 
+ * @see @ref jkermor_dynsys
+ * 
+ * @author Daniel Wirtz @date 2013-08-07
  *
  */
 public class LinearInputConv implements IInputConv {

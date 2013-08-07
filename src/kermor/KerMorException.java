@@ -1,10 +1,9 @@
-/**
- * 
- */
 package kermor;
 
 /**
- * @author Ernst
+ * Custom exception for JKerMor related errors
+ * 
+ * @author Daniel Wirtz @date 2013-08-07
  *
  */
 public class KerMorException extends Exception {

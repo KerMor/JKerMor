@@ -1,6 +1,3 @@
-/**
- * 
- */
 package kermor;
 
 import jarmos.DefaultSolutionField;
@@ -25,14 +22,15 @@ import org.apache.commons.math.ode.nonstiff.EulerIntegrator;
 import org.apache.commons.math.ode.sampling.FixedStepHandler;
 import org.apache.commons.math.ode.sampling.StepNormalizer;
 
-
 /**
+ * Main reduced model class
+ * 
+ * Contains the ReducedSystem, Parameters, the ODE solver and methods to load the offline data.
+ * 
  * @author Daniel Wirtz
  * 
  */
-public class ReducedModel extends ModelBase implements FixedStepHandler {// ,
-																			// StepHandler
-																			// {
+public class ReducedModel extends ModelBase implements FixedStepHandler {
 
 	public ReducedSystem system;
 
@@ -76,14 +74,14 @@ public class ReducedModel extends ModelBase implements FixedStepHandler {// ,
 
 	public SimulationResult getSimulationResult() {
 		double[][] dof_fields = converter.transformOutputToDoFs(output.getData());
-		
+
 		SimulationResult res = new SimulationResult(times.length);
-		// Add default transforms for each timestep (TODO improve; use only 
+		// Add default transforms for each timestep (TODO improve; use only
 		// some transforms and an transform-index)
-		for (int i=0; i < times.length; i++) {
+		for (int i = 0; i < times.length; i++) {
 			res.addTransform(new DefaultTransform());
 		}
-		
+
 		int fnumcnt = 0;
 		for (FieldDescriptor sftype : logicalFieldTypes) {
 			if (fnumcnt + sftype.Type.requiredDoFFields > getNumDoFFields()) {
@@ -104,7 +102,7 @@ public class ReducedModel extends ModelBase implements FixedStepHandler {// ,
 			case RealValue: {
 				DefaultSolutionField d = new DefaultSolutionField(sftype, numDoF);
 				for (int nodenr = 0; nodenr < numDoF; nodenr++) {
-					d.setValue(nodenr, (float)dof_fields[fnumcnt][nodenr]);
+					d.setValue(nodenr, (float) dof_fields[fnumcnt][nodenr]);
 				}
 				res.addField(d);
 				break;

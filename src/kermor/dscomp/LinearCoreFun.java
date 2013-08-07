@@ -1,12 +1,14 @@
-/**
- * 
- */
+
 package kermor.dscomp;
 
 import org.apache.commons.math.linear.RealMatrix;
 
 /**
- * @author CreaByte
+ * Constant linear dynamical system core function @f$ A @f$
+ * 
+ * @see @ref jkermor_dynsys
+ * 
+ * @author Daniel Wirtz
  *
  */
 public class LinearCoreFun implements ICoreFun {

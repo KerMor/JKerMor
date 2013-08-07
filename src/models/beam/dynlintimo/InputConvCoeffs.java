@@ -1,12 +1,10 @@
-/**
- * 
- */
+
 package models.beam.dynlintimo;
 
 import jarmos.affine.IAffineCoefficients;
 
 /**
- * @author CreaByte
+ * @author Daniel Wirtz
  * 
  */
 public class InputConvCoeffs implements IAffineCoefficients {

@@ -1,15 +1,13 @@
-/**
- * 
- */
+
 package models.beam.dynlintimo;
 
 import jarmos.affine.IAffineCoefficients;
 
 /**
- * Coefficient functions for the models.beam.DLTLinearCoreFun class used by the
+ * Coefficient functions for the KerMor models.beam.DLTLinearCoreFun class used by the
  * models.beam.DynLinTimoshenkoModel model
  * 
- * @author CreaByte
+ * @author Daniel Wirtz
  * 
  */
 public class CoreFunCoeffs implements IAffineCoefficients {

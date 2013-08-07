@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package kermor.test;
 
 import jarmos.Util;
@@ -11,7 +9,7 @@ import kermor.visual.Plotter;
 import org.junit.Test;
 
 /**
- * @author dwirtz
+ * @author Daniel Wirtz @date 2013-08-07
  *
  */
 public class GaussKernelTest {

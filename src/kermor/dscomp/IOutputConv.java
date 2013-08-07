@@ -1,11 +1,12 @@
-/**
- * 
- */
 package kermor.dscomp;
 
 
 /**
- * @author Ernst
+ * Interface for dynamical system output conversion matrices @f$ C(t,\mu) @f$
+ * 
+ * @see @ref jkermor_dynsys
+ * 
+ * @author Daniel Wirtz @date 2013-08-07
  *
  */
 public interface IOutputConv {

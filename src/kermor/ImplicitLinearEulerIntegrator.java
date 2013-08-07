@@ -1,6 +1,3 @@
-/**
- * 
- */
 package kermor;
 
 import kermor.dscomp.AffParamTimeCoreFun;
@@ -16,7 +13,9 @@ import org.apache.commons.math.ode.FirstOrderDifferentialEquations;
 import org.apache.commons.math.ode.IntegratorException;
 
 /**
- * @author CreaByte
+ * Custom implicit euler integrator class
+ * 
+ * @author Daniel Wirtz
  * 
  */
 public class ImplicitLinearEulerIntegrator extends AbstractIntegrator {
@@ -32,20 +31,15 @@ public class ImplicitLinearEulerIntegrator extends AbstractIntegrator {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.apache.commons.math.ode.FirstOrderIntegrator#integrate(org.apache
-	 * .commons.math.ode.FirstOrderDifferentialEquations, double, double[],
-	 * double, double[])
+	/**
+	 * @see org.apache.commons.math.ode.FirstOrderIntegrator#integrate(org.apache
+	 * .commons.math.ode.FirstOrderDifferentialEquations, double, double[], double, double[])
 	 */
 	@Override
-	public double integrate(FirstOrderDifferentialEquations equations,
-			double t0, double[] y0, double T, double[] yarr)
+	public double integrate(FirstOrderDifferentialEquations equations, double t0, double[] y0, double T, double[] yarr)
 			throws DerivativeException, IntegratorException {
 
-		//sanityChecks(equations, t0, y0, T, y);
+		// sanityChecks(equations, t0, y0, T, y);
 		// setEquations(equations);
 		// resetEvaluations();
 		ReducedSystem sys = model.system;
@@ -64,12 +58,10 @@ public class ImplicitLinearEulerIntegrator extends AbstractIntegrator {
 		RealMatrix A = null;
 		// time-independent A matrix
 		if (!sys.f.timeDependent()) {
-			A = ((AffParamTimeCoreFun) sys.f).getAffParamMatrix().compose(0,
-					sys.currentMu());
+			A = ((AffParamTimeCoreFun) sys.f).getAffParamMatrix().compose(0, sys.currentMu());
 		}
 
-		DecompositionSolver solver = new LUDecompositionImpl(M.add(A
-				.scalarMultiply(dt))).getSolver();
+		DecompositionSolver solver = new LUDecompositionImpl(M.add(A.scalarMultiply(dt))).getSolver();
 		double t = t0;
 		RealVector rhs;
 		do {
@@ -81,13 +73,11 @@ public class ImplicitLinearEulerIntegrator extends AbstractIntegrator {
 				double[] tmp = B.operate(u);
 				rhs = rhs.add(tmp);
 			}
-			
+
 			y = solver.solve(rhs);
-			
+
 			model.handleStep(t, y.toArray(), null, t == T);
 		} while (t < T);
-
-		// for (int ts=0;ts < )
 
 		return T;
 	}

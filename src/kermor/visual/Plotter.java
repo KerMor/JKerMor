@@ -1,6 +1,3 @@
-/**
- * 
- */
 package kermor.visual;
 
 import kermor.ReducedModel;
@@ -17,7 +14,11 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
 /**
- * @author dwirtz
+ * Basic methods for plotting results of dynamical sytem simulations.
+ * 
+ * This class uses the JFreeChart classes for plot generation.
+ * 
+ * @author Daniel Wirtz @date 2013-08-07
  * 
  */
 public class Plotter extends ApplicationFrame {

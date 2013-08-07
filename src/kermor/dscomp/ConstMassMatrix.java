@@ -1,12 +1,13 @@
-/**
- * 
- */
 package kermor.dscomp;
 
 import org.apache.commons.math.linear.RealMatrix;
 
 /**
- * @author CreaByte
+ * Implements a constant mass matrix @f$ M @f$ of the dynamical system.
+ * 
+ * @see @ref jkermor_dynsys
+ * 
+ * @author Daniel Wirtz
  *
  */
 public class ConstMassMatrix implements IMassMatrix {
