@@ -5,7 +5,7 @@ import org.apache.commons.math.linear.RealMatrix;
 /**
  * Implements a linear scalar product kernel @f$ K(x,y) = \langle x,y \rangle @f$
  * 
- * @TODO implement!
+ * @todo implement!
  * 
  * @author Daniel Wirtz @date 2013-08-07
  * 

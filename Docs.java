@@ -17,7 +17,6 @@
  * See the KerMor framework http://www.morepas.org/software/kermor for more information on reduced model generation and
  * export.
  * 
- * @ingroup jkermor
  * @{
  * @package kermor
  * @short @ref jkermor main package
