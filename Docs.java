@@ -1,7 +1,8 @@
 /**
  * @defgroup jkermor JKerMor
- * @ingroup jarmosbase
  * @short Classes for simulation of KerMor reduced models
+ * 
+ * \note This module depends on \ref jarmosbase.
  * 
  * @section jkermor_dynsys JKerMor dynamical systems
  * This package allows to simulate certain reduced systems from the MatLab KerMor framework.
